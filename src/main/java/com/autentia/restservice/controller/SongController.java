@@ -34,6 +34,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/songs")
@@ -56,6 +57,16 @@ public class SongController {
     private Song getSong(@PathVariable("id") long id) {
 
         return songService.getSongById(id);
+    }
+
+    @GetMapping("/top3/recently/rock")
+    @ApiOperation(value = "Find top 3 rock songs", notes = "Return top 3 rock songs by release" )
+    private List<Song> useAlias() {
+
+    return this.search("genre:rock").stream().limit(3)
+                .sorted(Comparator.comparing(Song::getRelease))
+                .collect(Collectors.toList());
+
     }
 
     @GetMapping("/search")
@@ -159,14 +170,7 @@ public class SongController {
                 mapper.setFilterProvider(fp);
                 json =mapper.writeValueAsString(song);
             }
-        } catch (JsonGenerationException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
