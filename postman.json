@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "dcd7a3da-feda-460b-8309-b9688af8ec26",
+		"name": "Charla REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Songs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/songs",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"songs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Song",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/songs/search?release_date=321&genre",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"songs",
+						"search"
+					],
+					"query": [
+						{
+							"key": "release_date",
+							"value": "321"
+						},
+						{
+							"key": "genre",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Song",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"artistId\":1,\n    \"albumId\":1,\n    \"href\":\"url donde se aloja la canción 0\",\n    \"title\":\"Titulo de la cancion 2\",\n    \"release_date\":\"1-10-2019\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/songs",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"songs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Song",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n    \"artistId\": 2,\n    \"albumId\": 2,\n    \"href\": \"url donde se aloja la canción 3\",\n    \"title\": \"Titulo de la cancion 3\",\n    \"release_date\": \"10-10-2019\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/songs",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"songs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Song",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/songs/9",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"songs",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Artists",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/artists",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"artists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Artist",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"hrefImage\": \"URL DONDE SE ALOJA LA IMAGEN DEL ARTISTA\",\n    \"artistName\": \"NOMBRE DEL ARTISTA 3\",\n    \"albums\": [{\n        \"hrefImage\": \"URL DONDE SE ALOJA LA IMAGEN DEL ALBUM\",\n        \"title\": \"TITULO DEL ALBUM 12\",\n        \"songs\": [\n            {\n                \"href\": \"URL DONDE SE ALOJA LA CANCIÓN 1\",\n                \"title\": \"TITULO DE LA CANCION 1\",\n                \"release_date\": \"1-01-2019\"\n            },\n            {\n                \"href\": \"URL DONDE SE ALOJA LA CANCIÓN 3\",\n                \"title\": \"TITULO DE LA CANCION 2\",\n                \"release_date\": \"1-01-2019\"\n            },\n            {\n                \"href\": \"URL DONDE SE ALOJA LA CANCIÓN 3\",\n                \"title\": \"TITULO DE LA CANCION 3\",\n                \"release_date\": \"1-01-2019\"\n            }\n        ],\n        \"artist\": null\n    }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/artists",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"artists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Artist",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n    \"hrefImage\": \"URL CAMBIADA DONDE SE ALOJA LA IMAGEN DEL ARTISTA\",\n    \"artistName\": \"NOMBRE DEL ARTISTA 2\",\n    \"albums\": [\n    \t{\n    \t\t\"hrefImage\": \"URL DONDE SE ALOJA LA IMAGEN DEL ALBUM\",\n    \t\t\"title\": \"TITULO DEL ALBUM 1\"\n    \t},\n    \t{\n    \t\t\"hrefImage\": \"URL DONDE SE ALOJA LA IMAGEN DEL ALBUM\",\n    \t\t\"title\": \"TITULO DEL ALBUM 2\"\n    \t}\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/artists",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"artists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Artist",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/artists/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"artists",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Albums",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/albums/7",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"albums",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Album",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"hrefImage\": \"URL DONDE SE ALOJA LA IMAGEN DEL ALBUM\",\n    \"title\": \"TITULO DEL ALBUM 10\",\n\t\"songs\": [\n\t\t{\n\t\t\t\"href\":\"URL DONDE SE ALOJA LA CANCIÓN 1\",\n\t\t\t\"title\":\"TITULO DE LA CANCION 1\",\n\t\t\t\"release_date\":\"1-01-2019\"\n\t\t},\n\t\t{\n\t\t\t\"href\":\"URL DONDE SE ALOJA LA CANCIÓN 3\",\n\t\t\t\"title\":\"TITULO DE LA CANCION 2\",\n\t\t\t\"release_date\":\"1-01-2019\"\n\t\t},\n\t\t{\n\t\t\t\"href\":\"URL DONDE SE ALOJA LA CANCIÓN 3\",\n\t\t\t\"title\":\"TITULO DE LA CANCION 3\",\n\t\t\t\"release_date\":\"1-01-2019\"\n\t\t}\n\t]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/albums",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Album",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 9,\n\t\"hrefImage\": \"URL CAMBIADA DONDE SE ALOJA LA IMAGEN DEL ALBUM\",\n    \"title\": \"TITULO DEL ALBUM 10\",\n\t\"songs\": [\n\t\t{\n\t\t\t\"href\":\"URL DONDE SE ALOJA LA CANCIÓN 1\",\n\t\t\t\"title\":\"TITULO DE LA CANCION 1\",\n\t\t\t\"release_date\":\"1-01-2019\"\n\t\t},\n\t\t{\n\t\t\t\"href\":\"URL DONDE SE ALOJA LA CANCIÓN 3\",\n\t\t\t\"title\":\"TITULO DE LA CANCION 2\",\n\t\t\t\"release_date\":\"1-01-2019\"\n\t\t},\n\t\t{\n\t\t\t\"href\":\"URL DONDE SE ALOJA LA CANCIÓN 3\",\n\t\t\t\"title\":\"TITULO DE LA CANCION 3\",\n\t\t\t\"release_date\":\"1-01-2019\"\n\t\t}\n\t]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/albums",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Album",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/albums/9",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"albums",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "dc11300f7c75aeb800f78db5ff9be95b",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "api_key",
+				"type": "string"
+			}
+		]
+	},
+	"protocolProfileBehavior": {}
+}
