@@ -1,15 +1,15 @@
 package com.autentia.restservice.dto;
 
 public class SongRate {
-    private long id;
+    private String title;
     private double rate;
 
-    public long getId() {
-        return id;
+    public String getId() {
+        return title;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(String title) {
+        this.title = title;
     }
 
     public double getRate() {

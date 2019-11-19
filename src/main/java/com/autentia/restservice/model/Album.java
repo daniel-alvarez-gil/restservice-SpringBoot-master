@@ -2,18 +2,19 @@ package com.autentia.restservice.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.hateoas.ResourceSupport;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @ApiModel("Model Album")
-public class Album {
+public class Album extends ResourceSupport {
 
     @Id
     @GeneratedValue
     @ApiModelProperty(notes = "id of the Album")
-    private long id;
+    private long albumId;
 
     @ApiModelProperty(notes = "href Image of the Album")
     private String hrefImage;
@@ -25,12 +26,12 @@ public class Album {
     @ApiModelProperty(notes = "songs of the User")
     private List<Song> songs;
 
-    public long getId() {
-        return id;
+    public long getAlbumId() {
+        return albumId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setAlbumId(long albumId) {
+        this.albumId = albumId;
     }
 
     public String getHrefImage() {

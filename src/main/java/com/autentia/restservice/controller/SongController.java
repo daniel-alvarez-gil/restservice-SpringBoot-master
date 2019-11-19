@@ -54,14 +54,14 @@ public class SongController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Find a song", notes = "Return a song by Id",response = Song.class)
-    private Song getSong(@PathVariable("id") long id) {
+    public Song getSong(@PathVariable("id") long id) {
 
         return songService.getSongById(id);
     }
 
     @GetMapping("/top3/recently/rock")
     @ApiOperation(value = "Find top 3 rock songs", notes = "Return top 3 rock songs by release" )
-    private List<Song> useAlias() {
+    public List<Song> useAlias() {
 
     return this.search("genre:rock").stream().limit(3)
                 .sorted(Comparator.comparing(Song::getRelease))
@@ -86,7 +86,7 @@ public class SongController {
 
     @GetMapping("/searchByGenreAndDate")
     @ApiOperation(value = "Search songs by genre and release_date", notes = "Return all songs by filter" )
-    private List<?> search(@RequestParam(value = "genre", required = false) String genre,
+    public List<?> search(@RequestParam(value = "genre", required = false) String genre,
                                  @RequestParam(value = "release_date", required = false) Date release) {
         if( genre.isEmpty() && release == null) {
             List<Object> error = new ArrayList<>();
@@ -99,37 +99,37 @@ public class SongController {
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete a song")
-    private void deleteSong(@PathVariable("id") int id) {
+    public void deleteSong(@PathVariable("id") int id) {
         songService.delete(id);
     }
 
     @PostMapping()
     @ApiOperation(value = "Save a song", notes = "Return a song Id" )
-    private long saveSong(@RequestBody Song song) {
+    public long saveSong(@RequestBody Song song) {
         songService.saveOrUpdate(song);
-        return song.getId();
+        return song.getSongId();
     }
 
     @PutMapping()
     @ApiOperation(value = "Save or Update a song", notes = "Return a song Id" )
-    private long updateSong(@RequestBody Song song) {
+    public long updateSong(@RequestBody Song song) {
         songService.saveOrUpdate(song);
-        return song.getId();
+        return song.getSongId();
     }
 
     @PatchMapping()
     @ApiOperation(value = "Update a song´s price", notes = "Return a song Id" )
-    private ResponseEntity updatePartialSong(@RequestBody SongPrinceOnly song) {
+    public ResponseEntity updatePartialSong(@RequestBody SongPrinceOnly song) {
         Song manager = songService.getSongById(song.getId());
         manager.setPrice(song.getPrice());
         songService.saveOrUpdate(manager);
         return new ResponseEntity<>(manager, HttpStatus.OK);
     }
 
-    @GetMapping("rate/{id}")
+    @GetMapping("rate/{title}")
     @ApiOperation(value = "Get song rate from external api", notes = "Return a song rate" )
-    private SongRate getRateSong(@PathVariable("id") long id){
-        final String uri = "http://localhost:8081/apiExternal/v1/songs/"+id;
+    public SongRate getRateSong(@PathVariable("title") String title){
+        final String uri = "http://localhost:8081/apiExternal/v1/songs/"+title;
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -143,7 +143,7 @@ public class SongController {
 
     @GetMapping("/filter/{id}")
     @ApiOperation(value = "Find a song", notes = "Return a song by Id",response = Song.class)
-    private String getSongFiltered(@PathVariable("id") long id,@RequestParam(value="requiredFields",required=false ) String requiredFields) {
+    public String getSongFiltered(@PathVariable("id") long id,@RequestParam(value="requiredFields",required=false ) String requiredFields) {
 
         Song song = songService.getSongById(id);
 

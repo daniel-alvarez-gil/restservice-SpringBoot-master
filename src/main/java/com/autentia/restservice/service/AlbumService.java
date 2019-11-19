@@ -1,6 +1,7 @@
 package com.autentia.restservice.service;
 
 import com.autentia.restservice.model.Album;
+import com.autentia.restservice.model.Song;
 import com.autentia.restservice.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class AlbumService {
         return albums;
     }
 
-    public Album getAlbumById(int id) {
+    public Album getAlbumById(long id) {
         return albumRepository.findById(id).get();
     }
 
@@ -28,8 +29,13 @@ public class AlbumService {
         albumRepository.save(album);
     }
 
-    public void delete(int id) {
+    public void delete(long id) {
         albumRepository.deleteById(id);
+    }
+
+    public List<Song> getAllSongsForAlbum(long albumId) {
+        Album album = albumRepository.findById(albumId).get();
+        return album.getSongs();
     }
 
 }

@@ -17,12 +17,11 @@ public class ArtistService {
 
     public List<Artist> getAllArtists() {
         List<Artist> artists = new ArrayList<>();
-        List<Album> albums = new ArrayList<>();
         artistRepository.findAll().forEach(artist -> artists.add(artist));
         return artists;
     }
 
-    public Artist getArtistById(int id) {
+    public Artist getArtistById(long id) {
         return artistRepository.findById(id).get();
     }
 
@@ -30,7 +29,7 @@ public class ArtistService {
         artistRepository.save(artist);
     }
 
-    public void delete(int id) {
+    public void delete(long id) {
         artistRepository.deleteById(id);
     }
 }

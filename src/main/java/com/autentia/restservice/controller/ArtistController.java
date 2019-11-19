@@ -25,13 +25,13 @@ public class ArtistController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Find an artist", notes = "Return an artist by Id",response = Artist.class)
-    private Artist getArtist(@PathVariable("id") int id) {
+    private Artist getArtist(@PathVariable("id") long id) {
         return artistService.getArtistById(id);
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete an artist")
-    private void deleteArtist(@PathVariable("id") int id) {
+    private void deleteArtist(@PathVariable("id") long id) {
         artistService.delete(id);
     }
 

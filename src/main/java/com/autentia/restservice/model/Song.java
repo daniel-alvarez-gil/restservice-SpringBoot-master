@@ -1,22 +1,22 @@
 package com.autentia.restservice.model;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.ResourceSupport;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @ApiModel("Model Song")
 //@JsonFilter("fieldFilter")
-public class Song {
+public class Song extends ResourceSupport {
 
     @Id
     @GeneratedValue
     @ApiModelProperty(notes = "id of the Song")
-    private long id;
+    private long songId;
 
     @Column()
     @ApiModelProperty(notes = "href of the Song")
@@ -38,12 +38,12 @@ public class Song {
     @ApiModelProperty(notes = "price of the Song")
     private double price;
 
-    public long getId() {
-        return id;
+    public long getSongId() {
+        return songId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setSongId(long songId) {
+        this.songId = songId;
     }
 
     public String getHref() {
