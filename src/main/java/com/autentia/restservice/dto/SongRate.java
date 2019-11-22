@@ -4,11 +4,11 @@ public class SongRate {
     private String title;
     private double rate;
 
-    public String getId() {
+    public String getTitle() {
         return title;
     }
 
-    public void setId(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 

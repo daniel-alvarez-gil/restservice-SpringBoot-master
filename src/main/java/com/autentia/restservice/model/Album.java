@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.springframework.hateoas.ResourceSupport;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -51,7 +52,7 @@ public class Album extends ResourceSupport {
     }
 
     public List<Song> getSongs() {
-        return songs;
+        return (songs != null) ? songs: new ArrayList<>();
     }
 
     public void setSongs(List<Song> songs) {

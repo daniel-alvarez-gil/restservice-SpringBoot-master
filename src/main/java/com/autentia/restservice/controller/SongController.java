@@ -84,17 +84,17 @@ public class SongController {
         return songService.getAllSongs(spec);
     }
 
-    @GetMapping("/searchByGenreAndDate")
-    @ApiOperation(value = "Search songs by genre and release_date", notes = "Return all songs by filter" )
+    @GetMapping("/searchByGenreOrPrice")
+    @ApiOperation(value = "Search songs by genre or price", notes = "Return all songs by filter" )
     public List<?> search(@RequestParam(value = "genre", required = false) String genre,
-                                 @RequestParam(value = "release_date", required = false) Date release) {
-        if( genre.isEmpty() && release == null) {
+                          @RequestParam(value = "price", required = false) Double price) {
+        if( genre == null && price == null) {
             List<Object> error = new ArrayList<>();
             error.add(new ErrorDTO(true, "Tiene que tener al menos un parametro la petición"));
             return error;
         }
 
-        return songService.search(genre, release);
+        return songService.search(genre, price);
     }
 
     @DeleteMapping("/{id}")

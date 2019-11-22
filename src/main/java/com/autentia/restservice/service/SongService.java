@@ -9,9 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SongService{
@@ -35,14 +33,15 @@ public class SongService{
         return songRepository.findById(id).orElseThrow(() -> new SongNotFoundException(id));
     }
 
-    public List<Song> search(String genre, Date release) {
+    public List<Song> search(String genre, Double price) {
         List<Song> songs = new ArrayList<>();
         songRepository.findAll().forEach(song -> {
             if((genre != null && song.getGenre().contains(genre)) ||
-                    (release != null && (song.getRelease().compareTo(release) == 0))) {
+                    (price != null && (song.getPrice() == price))) {
                 songs.add(song);
             }
         });
+
         return songs;
     }
 
