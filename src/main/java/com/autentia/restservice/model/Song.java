@@ -1,5 +1,6 @@
 package com.autentia.restservice.model;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.hateoas.Link;
@@ -10,11 +11,11 @@ import java.util.Date;
 
 @Entity
 @ApiModel("Model Song")
-//@JsonFilter("fieldFilter")
 public class Song extends ResourceSupport {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "song_generator")
+    @SequenceGenerator(name="song_generator", sequenceName = "song_seq")
     @ApiModelProperty(notes = "id of the Song")
     private long songId;
 

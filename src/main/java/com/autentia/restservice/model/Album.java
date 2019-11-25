@@ -13,7 +13,8 @@ import java.util.List;
 public class Album extends ResourceSupport {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "album_generator")
+    @SequenceGenerator(name="album_generator", sequenceName = "album_seq")
     @ApiModelProperty(notes = "id of the Album")
     private long albumId;
 

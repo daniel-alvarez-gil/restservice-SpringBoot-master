@@ -110,8 +110,9 @@ public class SongController {
         return song.getSongId();
     }
 
-    @PutMapping()
+
     @ApiOperation(value = "Save or Update a song", notes = "Return a song Id" )
+    @PutMapping()
     public long updateSong(@RequestBody Song song) {
         songService.saveOrUpdate(song);
         return song.getSongId();

@@ -19,22 +19,10 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @EnableSwagger2
 @Configuration
-@EnableSpringDataWebSupport
-public class Config implements WebMvcConfigurer {
-/*
-        @Bean
-        public Docket api()
-        {
-            return new Docket(DocumentationType.SWAGGER_2)
-                    .select()
-                    .apis(RequestHandlerSelectors.any())
-                    .paths(PathSelectors.any())
-                    .build();
-        }*/
+public class SwaggerConfig implements WebMvcConfigurer {
 
     @Bean
     public Docket api() {
@@ -60,26 +48,6 @@ public class Config implements WebMvcConfigurer {
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build();
-    }
-
-    @Bean
-    public MappingJackson2XmlHttpMessageConverter mappingJackson2XmlHttpMessageConverter() {
-        return new MappingJackson2XmlHttpMessageConverter(
-                new Jackson2ObjectMapperBuilder()
-                        .defaultUseWrapper(false)
-                        .createXmlMapper(true)
-                        .build()
-        );
-    }
-
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(0, new MappingJackson2XmlHttpMessageConverter(
-                new Jackson2ObjectMapperBuilder()
-                        .defaultUseWrapper(false)
-                        .createXmlMapper(true)
-                        .build()
-        ));
     }
 }
 

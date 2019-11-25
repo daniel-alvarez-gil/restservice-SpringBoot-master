@@ -11,7 +11,8 @@ import java.util.List;
 public class Artist {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "artist_generator")
+    @SequenceGenerator(name="artist_generator", sequenceName = "artist_seq")
     @ApiModelProperty(notes = "id of the Artist")
     private long id;
     @Column

@@ -39,13 +39,17 @@ public class AlbumController {
             long albumId = album.getAlbumId();
             Link selfLink = linkTo(AlbumController.class).slash(albumId).withSelfRel();
             album.add(selfLink);
+
             List<Song> songs = albumService.getAllSongsForAlbum(albumId);
             if (songs.size() > 0) {
-                Link albumLink = linkTo(methodOn(AlbumController.class)
+                Link albumLink =
+                        linkTo(methodOn(AlbumController.class)
                         .getAllSongByAlbum(albumId)).withRel("allSongs");
                 album.add(albumLink);
+
                 for (final Song song : songs) {
-                    Link songLink = linkTo(methodOn(SongController.class)
+                    Link songLink =
+                            linkTo(methodOn(SongController.class)
                             .getSong(song.getSongId())).withSelfRel();
                     song.add(songLink);
                 }
@@ -53,8 +57,7 @@ public class AlbumController {
         }
 
         Link link = linkTo(AlbumController.class).withSelfRel();
-        Resources<Album> result = new Resources<>(allAlbums, link);
-        return result;
+        return new Resources<>(allAlbums, link);
     }
 
     @GetMapping("/{albumId}/songs")
@@ -63,16 +66,16 @@ public class AlbumController {
         return albumService.getAllSongsForAlbum(albumId);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{albumId}")
     @ApiOperation(value = "Find an album", notes = "Return an album by Id",response = Album.class)
-    private Album getAlbum(@PathVariable("id") long id) {
-        return albumService.getAlbumById(id);
+    private Album getAlbum(@PathVariable("albumId") long albumId) {
+        return albumService.getAlbumById(albumId);
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete an album")
-    private void deleteAlbum(@PathVariable("id") int id) {
-        albumService.delete(id);
+    private void deleteAlbum(@PathVariable("albumId") int albumId) {
+        albumService.delete(albumId);
     }
 
     @PostMapping()
